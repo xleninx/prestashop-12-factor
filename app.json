@@ -1,0 +1,28 @@
+{
+	"name": "Twelve-Factor Prestashop",
+	"description": "Prestashop, fully managed using Composer and configured using environment variables.",
+	"keywords": [
+		"php",
+		"prestashop",
+		"ecommerce",
+		"cart"
+	],
+	"website": "https://github.com/absalomedia/prestashop-12factor",
+	"repository": "https://github.com//absalomedia/prestashop-12factor",
+	"logo": "https://www.prestashop.com//img-cdn.prestashop.com/media-kit/prestashop-vertical.png",
+	"success_url": "/",
+	"scripts": {
+		"postdeploy": "composer prestashop-setup-core  &&  composer prestashop-db-core --name='Prestashop on Heroku' --domain=example.herokuapp.com --db_server= --db_name=prestashop --db_user=\"$PRESTASHOP_ADMIN_USER\" --db_password=\"$PRESTASHOP_ADMIN_PASSWORD\" --email=\"$PRESTASHOP_ADMIN_EMAIL\" && composer prestashop-setup-clean && composer prestashop-setup-welcome "
+	},
+	"env": {
+		"PRESTASHOP_ADMIN_EMAIL":      { "description": "Prestashop Administrator E-Mail" },
+		"PRESTASHOP_ADMIN_USER":       { "description": "Prestashop Administrator Username", "value": "admin" },
+		"PRESTASHOP_ADMIN_PASSWORD":   { "description": "Prestashop Administrator Password" }
+	},
+	"addons": [
+		"jawsdb",
+		"bucketeer",
+		"sendgrid"
+	],
+	"image": "heroku/php"
+}
