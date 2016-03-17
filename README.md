@@ -4,13 +4,11 @@ Prestashop, the [Twelve-Factor](http://12factor.net/) way: fully managed using C
 
 ## General Concepts and Considerations
 
-The Prestashop installation is fully contained in a `store` subfolder upon `composer install`. A `settings.inc.php` resides in the root of the project, and uses several different environment variables to control behavior.
+The Prestashop installation is fully contained in a `store` subfolder upon Heroku deployment. A `settings.inc.php` resides in the root of the project, and uses several different environment variables to control behavior.
 
 The configuration file is kept as generic as possible; on Heroku, add-ons [JawsDB](https://elements.heroku.com/addons/jawsdb) (for MySQL), [Bucketeer](https://elements.heroku.com/addons/bucketeer) (for S3 storage), and [SendGrid](https://elements.heroku.com/addons/sendgrid) (for E-Mails) are used.
 
 The assumption is that this installation runs behind a load balancer whose `X-Forwarded-Proto` header value can be trusted; it is used to determine whether the request protocol is HTTPS or not.
-
-HTTPS is forced for Login and Admin functions. `WP_DEBUG` is on; errors do not get displayed, but should get logged to PHP's default error log, accessible e.g. using `heroku logs`.
 
 ## Quick Deploy
 
@@ -27,8 +25,8 @@ After the deploy, in [Heroku's Dashboard](https://dasboard.heroku.com) under "Se
 Clone this repo:
 
 ```
-$ git clone https://github.com/absalomedia/prestashop-12factor
-$ cd prestashop-12factor
+$ git clone https://github.com/absalomedia/prestashop-12-factor
+$ cd prestashop-12-factor
 ```
 
 If you like, you can locally install dependencies with [Composer](https://getcomposer.org):
